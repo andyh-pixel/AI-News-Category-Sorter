@@ -16,11 +16,11 @@ The purpose of this project is to demonstrate the use of AI agents, backend proc
 
 # Group Member Satisfaction and Agreement of Work.
 
-All group members have agreed in writing on the distribution of work and believe it reflects a fair distribution.
+* All group members have agreed in writing on the distribution of work and believe it reflects a fair distribution.
 
-All group members are satisfied with the contributions that each member have contributed and if unsatisfied will have made it known to the professor.
+* All group members are satisfied with the contributions that each member have contributed and if unsatisfied will have made it known to the professor.
 
-All group members works are their own and not copied from the internet. We have made an effort to use the example code provided and turn it into our own project.
+* All group members works are their own and not copied from the internet. We have made an effort to use the example code provided and turn it into our own project.
 
 ---
 
@@ -205,5 +205,23 @@ Responsibilities:
 | Node.js                            | Server environment          |
 | SQLite3                            | Database storage            |
 | AI Zero-Shot Classification Models | News article classification |
+
+
+---
+
+# AI Use Disclosure
+
+AI has been used for the following in this project:
+
+* Error checking of code
+* Researching local models & Implementation styles [https://huggingface.co/docs/transformers.js/en/pipelines] [https://huggingface.co/Xenova/mobilebert-uncased-mnli] [https://huggingface.co/Xenova/bart-large-mnli]
+* Model research into quantization [https://huggingface.co/docs/transformers.js/guides/dtypes]
+
+
+**AT NO POINT WAS AI USED FOR ANY OF THE FOLLOWING**
+
+* Generating Code for html pages/app.js/database.js/sql implementation
+* Creation of the report/presentation
+
 
 ---
