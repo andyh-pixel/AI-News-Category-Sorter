@@ -36,6 +36,8 @@ The purpose of this project is to demonstrate the use of AI agents, backend proc
 
 All members will be present and present their part during the in class presentations
 
+Additionally note that the project/file setup by Erik was done before the github was created, so there is no commit of his work.
+
 ---
 
 
