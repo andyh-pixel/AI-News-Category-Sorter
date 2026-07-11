@@ -30,10 +30,11 @@ The purpose of this project is to demonstrate the use of AI agents, backend proc
 
 | Member | Name   | Student ID   | Work Dispersement                               |
 | ------ | ------ | ------------ | ----------------------------------------------- |
-| 1      | Erik Gabriel Francisco | 220865234 | Initial project setup & initial server file planning/methods. Presentation |
-| 2      | Thanh Duy Hoang | 219707314 | HTML/CSS for results & index |
-| 3      | Matthew Leslie | 220673331 | Inner server file methods logic, csv parsing, and AI integration |
+| 1      | Erik Gabriel Francisco | 220865234 | Initial setup & app.get methods, Presentation, Major Report work |
+| 2      | Thanh Duy Hoang | 219707314 | HTML/CSS for results & index, Major Report work |
+| 3      | Matthew Leslie | 220673331 | Inner server file methods logic, csv parsing, AI integration, Database, Minor report work |
 
+All members will be present and present their part during the in class presentations
 
 ---
 
