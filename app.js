@@ -142,9 +142,6 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 
                 fs.unlinkSync(filePath);
 
-                // No redirect here — just confirm success.
-                // The frontend can show a "done" message and let the user
-                // click the Results header link whenever they're ready.
                 res.json({ success: true, rowsProcessed: rows.length });
 
             } catch (err) {
