@@ -16,7 +16,7 @@ const PORT = 3000;
 
 app.use(express.static("public"));
 
-//
+//upload file to this directory
 const upload = multer({ dest: "uploads/" });
 
 const BATCH_SIZE = 25;
@@ -79,7 +79,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     const rows = [];
 
     fs.createReadStream(filePath)
-        .pipe(csv())
+        .pipe(csv({ mapHeaders: ({ header }) => header.trim() }))
         .on("data", (row) => rows.push(row))
         .on("end", async () => {
             try {
