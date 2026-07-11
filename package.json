@@ -1,0 +1,21 @@
+{
+  "name": "news-classifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "@xenova/transformers": "^2.0.1",
+    "csv-parser": "^3.2.1",
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "sqlite3": "^6.0.1"
+  }
+}
