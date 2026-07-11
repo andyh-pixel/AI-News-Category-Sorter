@@ -219,6 +219,7 @@ AI has been used for the following in this project:
 * Error checking of code
 * Researching local models & Implementation styles [https://huggingface.co/docs/transformers.js/en/pipelines] [https://huggingface.co/Xenova/mobilebert-uncased-mnli] [https://huggingface.co/Xenova/bart-large-mnli]
 * Model research into quantization [https://huggingface.co/docs/transformers.js/guides/dtypes]
+* Creation and formatting of this README.md file which was then human edited for clarification and accuracy
 
 
 **AT NO POINT WAS AI USED FOR ANY OF THE FOLLOWING**
