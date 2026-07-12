@@ -6,10 +6,6 @@ The **AI Agentic News Classification System** is a web-based application that us
 
 After receiving the uploaded CSV file, the server parses the data and divides the articles into smaller batches of 25 records. These batches are sent to two independent AI zero-shot classification models for analysis. Each AI model returns a classification result represented as a numerical value corresponding to a news category.
 
-The returned classifications from both AI models are then stored in an SQLite3 database. The system compares the AI predictions against the expected classifications stored in the dataset to determine the accuracy of each model. The comparison results are displayed on the results page, allowing users to evaluate and compare the performance of both AI classifiers.
-
-The purpose of this project is to demonstrate the use of AI agents, backend processing, database storage, and model comparison in an automated news classification pipeline.
-
 ---
 
 
@@ -28,11 +24,11 @@ The purpose of this project is to demonstrate the use of AI agents, backend proc
 
 # Project Members & Work Dispersement
 
-| Member | Name   | Student ID   | Work Dispersement                               |
+| Member | Name   | Work Dispersement                               |
 | ------ | ------ | ------------ | ----------------------------------------------- |
-| 1      | Erik Gabriel Francisco | 220865234 | Initial setup & app.get methods, HTTPS get/post for webpages, Presentation, Major Report work |
-| 2      | Thanh Duy Hoang | 219707314 | HTML/CSS for results & index, implementing display logic for statistics, Major Report work |
-| 3      | Matthew Leslie | 220673331 | Inner server file methods logic, csv parsing, AI integration, Database, Minor report work |
+| 1      | Erik Gabriel Francisco | Initial setup & app.get methods, HTTPS get/post for webpages, Presentation, Major Report work |
+| 2      | Thanh Duy Hoang | HTML/CSS for results & index, implementing display logic for statistics, Major Report work |
+| 3      | Matthew Leslie | Inner server file methods logic, csv parsing, AI integration, Database, Minor report work |
 
 All members will be present and present their part during the in class presentations
 
@@ -116,20 +112,6 @@ The application follows the following workflow:
 
 # How to Use the Project
 
-## Requirements
-
-Before running the project, ensure the following are installed:
-
-* Node.js
-* npm
-* SQLite3
-
----
-
-
-
-## Running the Application
-
 Start the server:
 
 ```
@@ -199,33 +181,21 @@ Responsibilities:
 
 ---
 
-# Technologies Used
-
-| Technology                         | Purpose                     |
-| ---------------------------------- | --------------------------- |
-| HTML/CSS                           | Frontend user interface     |
-| JavaScript                         | Frontend and backend logic  |
-| Node.js                            | Server environment          |
-| SQLite3                            | Database storage            |
-| AI Zero-Shot Classification Models | News article classification |
-
-
----
-
 # AI Use Disclosure
 
-AI has been used for the following in this project:
+As noted in the assignment posting, AI can be used with disclosure and citations. AI has been used for the following in this project:
 
 * Error checking of code
 * Researching local models & Implementation styles [https://huggingface.co/docs/transformers.js/en/pipelines] [https://huggingface.co/Xenova/mobilebert-uncased-mnli] [https://huggingface.co/Xenova/bart-large-mnli]
 * Model research into quantization [https://huggingface.co/docs/transformers.js/guides/dtypes]
-* Creation and formatting of this README.md file which was then human edited for clarification and accuracy
+* Formatting of the readme file with manually entered text.
 
 
 **AT NO POINT WAS AI USED FOR ANY OF THE FOLLOWING**
 
 * Generating Code for html pages/app.js/database.js/sql implementation
-* Creation of the report/presentation
+* Creation of the Presentation
+* Creation of the Report
 
 
 ---
