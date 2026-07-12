@@ -25,7 +25,7 @@ After receiving the uploaded CSV file, the server parses the data and divides th
 # Project Members & Work Dispersement
 
 | Member | Name   | Work Dispersement                               |
-| ------ | ------ | ------------ | ----------------------------------------------- |
+| ------ | ------ | ----------------------------------------------- |
 | 1      | Erik Gabriel Francisco | Initial setup & app.get methods, HTTPS get/post for webpages, Presentation, Major Report work |
 | 2      | Thanh Duy Hoang | HTML/CSS for results & index, implementing display logic for statistics, Major Report work |
 | 3      | Matthew Leslie | Inner server file methods logic, csv parsing, AI integration, Database, Minor report work |
