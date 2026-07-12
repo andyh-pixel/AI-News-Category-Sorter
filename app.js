@@ -74,7 +74,7 @@ app.get("/results-data", async (req, res) => {
 });
 
 // Upload
-app.post("/upload", upload.single("file"), async (req, res) => {
+app.post("/upload", upload.single("csv"), async (req, res) => {
     const filePath = req.file.path;
     const rows = [];
 
