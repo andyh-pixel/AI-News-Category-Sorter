@@ -12,10 +12,16 @@
   "type": "commonjs",
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
-    "@xenova/transformers": "^2.0.1",
     "csv-parser": "^3.2.1",
     "express": "^5.2.1",
     "multer": "^2.2.0",
     "sqlite3": "^6.0.1"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "sharp@0.32.6": true,
+    "onnxruntime-node@1.24.3": true,
+    "protobufjs@7.6.5": true,
+    "sqlite3@6.0.1": true
   }
 }

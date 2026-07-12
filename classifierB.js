@@ -1,7 +1,12 @@
 const { pipeline } = require("@huggingface/transformers");
 
 let classifier;
-const labels = ["World", "Sports", "Business", "Sci/Tech"];
+const labels = [
+    "world news and international events",
+    "sports news and athletic competitions",
+    "business, finance, and the economy",
+    "science and technology news"
+];
 
 async function load() {
     if (!classifier) {
