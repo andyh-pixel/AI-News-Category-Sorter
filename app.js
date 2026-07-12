@@ -28,6 +28,14 @@ const LABEL_TO_CLASS_INDEX = {
     "Sci/Tech": 4
 };
 
+const categoryNames = {
+    1: "World",
+    2: "Sports",
+    3: "Business",
+    4: "Sci/Tech"
+ };
+
+
 function topClassIndex(zeroShotResult) {
     const topLabel = zeroShotResult?.labels?.[0];
     return LABEL_TO_CLASS_INDEX[topLabel] ?? null;
@@ -52,19 +60,72 @@ app.get("/results", function (req, res) {
 });
 
 // Results data
+// Results data
+// Results data
 app.get("/results-data", async (req, res) => {
     try {
-        const rows = await all("SELECT modelA_correct, modelB_correct FROM results");
 
-        const total = rows.length;
+        // Overall totals
+        const totals = await all(`
+            SELECT
+                COUNT(*) AS total,
+                SUM(modelA_correct) AS modelA_correct,
+                SUM(modelB_correct) AS modelB_correct
+            FROM results
+        `);
 
-        const modelA_correct = rows.filter(r => r.modelA_correct === 1).length;
-        const modelB_correct = rows.filter(r => r.modelB_correct === 1).length;
+        // Category breakdown
+        const categoryStats = await all(`
+            SELECT
+                expected_class,
+                COUNT(*) AS total,
+                SUM(modelA_correct) AS modelA_correct,
+                SUM(modelB_correct) AS modelB_correct
+            FROM results
+            GROUP BY expected_class
+            ORDER BY expected_class
+        `);
+
+        const categoryDistribution = {};
+
+        // Ensure every category exists
+        Object.values(categoryNames).forEach(name => {
+            categoryDistribution[name] = {
+                articles: 0,
+                classifierA: 0,
+                classifierB: 0
+            };
+        });
+
+        // Fill with database values
+        for (const row of categoryStats) {
+
+            const category = categoryNames[row.expected_class];
+
+            categoryDistribution[category] = {
+                articles: row.total,
+                classifierA: row.total
+                    ? (row.modelA_correct / row.total) * 100
+                    : 0,
+                classifierB: row.total
+                    ? (row.modelB_correct / row.total) * 100
+                    : 0
+            };
+        }
+
+        const total = totals[0].total || 0;
+        const modelACorrect = totals[0].modelA_correct || 0;
+        const modelBCorrect = totals[0].modelB_correct || 0;
 
         res.json({
-            total,
-            modelA_accuracy: total ? (modelA_correct / total) * 100 : 0,
-            modelB_accuracy: total ? (modelB_correct / total) * 100 : 0
+            totalArticles: total,
+            classifierAAccuracy: total
+                ? (modelACorrect / total) * 100
+                : 0,
+            classifierBAccuracy: total
+                ? (modelBCorrect / total) * 100
+                : 0,
+            categoryDistribution
         });
 
     } catch (err) {
