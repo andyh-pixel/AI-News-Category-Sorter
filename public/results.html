@@ -47,26 +47,26 @@
 
     <!-- Stats -->
 
-    <div class="row g-4">
+    <div class="row justify-content-center g-4">
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="stats-card">
-                <h5>Articles</h5>
-                <h2>placeholder</h2>
+                <h5>Total Articles</h5>
+                <h2 id="totalArticlesDisplay">Loading...</h2>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="stats-card">
-                <h5>Categories</h5>
-                <h2>placeholder</h2>
+                <h5>Model A Accuracy</h5>
+                <h2 id="modelAAccuracyDisplay">Loading...</h2>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="stats-card">
-                <h5>Accuracy</h5>
-                <h2>placeholder</h2>
+                <h5>Model B Accuracy</h5>
+                <h2 id="modelBAccuracyDisplay">Loading...</h2>
             </div>
         </div>
 
@@ -94,21 +94,16 @@
 
             <tr>
                 <th>Category</th>
-                <th>Articles</th>
+                <th>Total Articles</th>
+                <th>Model A Accuracy</th>
+                <th>Model B Accuracy</th>
             </tr>
 
             </thead>
 
-            <tbody>
+            <tbody id="categoryTableBody">
 
-            <tr><td>Politics</td><td>placeholder</td></tr>
-            <tr><td>Sports</td><td>placeholder</td></tr>
-            <tr><td>Business</td><td>placeholder</td></tr>
-            <tr><td>Technology</td><td>placeholder</td></tr>
-            <tr><td>Entertainment</td><td>placeholder</td></tr>
-            <tr><td>Health</td><td>placeholder</td></tr>
-            <tr><td>Science</td><td>placeholder</td></tr>
-
+            <tr><td colspan="4" class="text-center">Loading data...</td></tr>
             </tbody>
 
         </table>
@@ -128,6 +123,71 @@
     </div>
 
 </div>
+
+
+<script>
+    async function loadResults(){
+
+
+        try {
+            const response = await fetch('/results-data');
+            const data = await response.json(); 
+
+            if (response.ok){
+                document.getElementById('totalArticlesDisplay').innerText = data.totalArticles;
+                document.getElementById('modelAAccuracyDisplay').innerText = data.classifierAAccuracy.toFixed(1) + "%";
+                document.getElementById('modelBAccuracyDisplay').innerText = data.classifierBAccuracy.toFixed(1) + "%";
+
+                const tableBody = document.getElementById('categoryTableBody');
+                tableBody.innerHTML = "";
+
+                const labels = [];
+                const chartData = [];
+
+                for (const [category, stats] of Object.entries(data.categoryDistribution)) {
+                    const row = 
+                    `<tr>
+                        <td>${category}</td>
+                        <td>${stats.articles}</td>
+                        <td>${stats.classifierA.toFixed(1)}%</td>
+                        <td>${stats.classifierB.toFixed(1)}%</td>
+                    </tr>`;
+
+                    tableBody.innerHTML += row;
+
+                    labels.push(category);
+                    chartData.push(stats.articles);
+
+                }
+
+                const context = document.getElementById('pieChart').getContext('2d');
+                new Chart(context, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: chartData,
+                            backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545'],
+                        }]
+                    }
+                });
+
+                }
+                else {
+
+                    console.error("Server returned an error: ", data.error );
+                }
+
+            }
+
+            catch (error){
+                console.error ("Failed to fetch results data: ", error);
+            }
+        }
+
+        window.onload = loadResults;
+
+</script>
 
 </body>
 </html>
