@@ -21,12 +21,23 @@ const upload = multer({ dest: "uploads/" });
 
 const BATCH_SIZE = 25;
 
+
+// Original Code
+// const LABEL_TO_CLASS_INDEX = {
+//     "World": 1,
+//     "Sports": 2,
+//     "Business": 3,
+//     "Sci/Tech": 4
+// };
+
 const LABEL_TO_CLASS_INDEX = {
-    "World": 1,
-    "Sports": 2,
-    "Business": 3,
-    "Sci/Tech": 4
+    "world news and international events": 1,
+    "sports news and athletic competitions": 2,
+    "business, finance, and the economy": 3,
+    "science and technology news": 4
 };
+
+
 
 const categoryNames = {
     1: "World",
