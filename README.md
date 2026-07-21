@@ -47,7 +47,6 @@ AI-News-Classification/
 ├── html/
 │   ├── index.html              # Upload page
 │   ├── results.html            # Classification results page
-│   └── other HTML pages
 │
 ├── uploads/
 │   └── uploaded CSV files      # Stores client uploaded datasets
@@ -144,19 +143,7 @@ Responsibilities:
 
 ---
 
-## classifierA.js
-
-Contains the implementation of the first zero-shot classification AI model.
-
-Responsibilities:
-
-* Receives article text.
-* Performs classification.
-* Returns classification results.
-
----
-
-## classifierB.js
+## classifierA.js & classifierB.js
 
 Contains the implementation of the second zero-shot classification AI model.
 
@@ -193,7 +180,7 @@ As noted in the assignment posting, AI can be used with disclosure and citations
 
 **AT NO POINT WAS AI USED FOR ANY OF THE FOLLOWING**
 
-* Generating Code for html pages/app.js/database.js/sql implementation
+* Generating Code for html pages/app.js/database.js
 * Creation of the Presentation
 * Creation of the Report
 
