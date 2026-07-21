@@ -2,23 +2,27 @@
 <html lang="en">
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Category Sorter</title>
 
-<title>Results</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Note: Some of css codes can not work, so we decided to put inline css for simplicity -->
 
-<link rel="stylesheet" href="css/style.css">
-
- <!-- Chart.js for graphs -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-dark bg-primary shadow">
+<!-- Navbar -->
+<nav class="navbar navbar-dark shadow" style="background-color: #494c50;">
     <div class="container d-flex justify-content-between">
 
         <!-- Logo -->
@@ -39,107 +43,144 @@
     </div>
 </nav>
 
-<div class="container mt-5">
 
-    <h1 class="text-center mb-5">
+
+
+<!-- Header with line news paper effect  -->
+<div class="container-fluid px-0 mt-5 mb-5">
+
+    <!-- line  -->
+    <hr style="border: none; border-top: 3px solid #111; opacity: 1; margin: 15px 0;">
+    
+    <!-- Header -->
+    <h1 class="display-5 fw-bold text-center mb-0" style="font-family: 'Times New Roman', Times, serif; text-transform: uppercase; color: #111; padding: 10px 0;">
         Classification Results
     </h1>
 
-    <!-- Stats -->
+    <!-- line -->
+    <hr style="border: none; border-top: 3px solid #111; opacity: 1; margin: 15px 0;">
+</div>
 
+
+<!-- Results area -->
+<div class="container">
+
+    <!-- They are all centered  -->
     <div class="row justify-content-center g-4">
 
+        <!-- Total article information -->
         <div class="col-md-4">
             <div class="stats-card">
+
                 <h5>Total Articles</h5>
+                 <!-- Information will show up after the is retrieved -->
                 <h2 id="totalArticlesDisplay">Loading...</h2>
             </div>
         </div>
 
+        <!-- Model A accuracy information -->
         <div class="col-md-4">
             <div class="stats-card">
+
                 <h5>Model A Accuracy</h5>
+                 <!-- Information will show up after the is retrieved -->
                 <h2 id="modelAAccuracyDisplay">Loading...</h2>
             </div>
         </div>
 
+        <!-- Model B accuracy information -->
         <div class="col-md-4">
             <div class="stats-card">
+
                 <h5>Model B Accuracy</h5>
+                 <!-- Information will show up after the is retrieved -->
                 <h2 id="modelBAccuracyDisplay">Loading...</h2>
             </div>
         </div>
 
     </div>
 
-    <!-- Graph -->
 
+    <!-- Graph (PIE CHART) -->
     <div class="chart-container mt-5">
 
-        <h3 class="text-center mb-4">
+        <h3 class="text-center mb-4" style="font-family: 'Times New Roman', Times, serif; text-transform: uppercase; color: #111;">
             News Category Distribution
         </h3>
 
+        <!-- GRAPH REMAINS UNTOUCHED (it will show up after the server finishes retrieving the data) -->
         <canvas id="pieChart"></canvas>
 
     </div>
 
     <!-- Table -->
-
     <div class="table-responsive mt-5">
 
-        <table class="table table-striped">
-
-            <thead class="table-primary">
-
-            <tr>
-                <th>Category</th>
-                <th>Total Articles</th>
-                <th>Model A Accuracy</th>
-                <th>Model B Accuracy</th>
-            </tr>
-
+        <table class="table table-striped text-center">
+            <!-- Custom Table header to match the newspaper theme-->
+            <thead style="background-color: #494c50; color: white;">
+                <tr>
+                    <th style="background-color: #494c50; color: white;">Category</th>
+                    <th style="background-color: #494c50; color: white;">Total Articles</th>
+                    <th style="background-color: #494c50; color: white;">Model A Accuracy</th>
+                    <th style="background-color: #494c50; color: white;">Model B Accuracy</th>
+                </tr>
             </thead>
 
+            <!-- Information will show up after the is retrieved -->
             <tbody id="categoryTableBody">
-
-            <tr><td colspan="4" class="text-center">Loading data...</td></tr>
+                <tr><td colspan="4" class="text-center py-4">Loading data...</td></tr>
             </tbody>
 
         </table>
 
     </div>
 
-    <div class="text-center mt-5 mb-5">
-
-        <a href="index.html" class="btn btn-outline-primary btn-lg ms-3">
-            Upload Another File
-        </a>
-
-    </div>
 
 </div>
 
+<!-- footer -->
+<footer class="text-center p-4 text-white mt-5" style="background-color: #818385;">
+    AI News Category Sorter © 2026
+</footer>
 
+
+
+<!-- The code runs on its own when the user loads into this page -->
 <script>
+
+    // Using async so that the webpage will not freeeze while it is talking to the server
     async function loadResults(){
 
 
         try {
+            // It sends a request to the server and asking for the results. (It's default is the GET method)
             const response = await fetch('/results-data');
-            const data = await response.json(); 
+            const data = await response.json();  
 
+
+            // If the server successfully responded
             if (response.ok){
+                // The results are taken from the server and the words ("loading...") are overwritten
                 document.getElementById('totalArticlesDisplay').innerText = data.totalArticles;
+                // We fix the numbering formatting by adding the "toFixed"
                 document.getElementById('modelAAccuracyDisplay').innerText = data.classifierAAccuracy.toFixed(1) + "%";
                 document.getElementById('modelBAccuracyDisplay').innerText = data.classifierBAccuracy.toFixed(1) + "%";
 
+
                 const tableBody = document.getElementById('categoryTableBody');
+
+                // We clear the table first because "loading data" is written there
                 tableBody.innerHTML = "";
 
+
+                // Sets an empty array
                 const labels = [];
                 const chartData = [];
 
+
+                // This will take every category, it will create a table row with the information
+                // (World, Sports, Business, Sci/Tech, and undefined)
                 for (const [category, stats] of Object.entries(data.categoryDistribution)) {
                     const row = 
                     `<tr>
@@ -149,6 +190,7 @@
                         <td>${stats.classifierB.toFixed(1)}%</td>
                     </tr>`;
 
+                    // creating the new row
                     tableBody.innerHTML += row;
 
                     labels.push(category);
@@ -156,7 +198,11 @@
 
                 }
 
+
+                // Drawing the pie chart
                 const context = document.getElementById('pieChart').getContext('2d');
+
+                // this is an extenral function from Chart.js to draw the graph
                 new Chart(context, {
                     type: 'pie',
                     data: {
@@ -168,6 +214,8 @@
                     }
                 });
 
+
+                // Error handling for (else and catch)
                 }
                 else {
 
@@ -181,6 +229,8 @@
             }
         }
 
+
+        // The function will start automatically
         window.onload = loadResults;
 
 </script>
